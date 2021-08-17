@@ -28,37 +28,51 @@ and add a game reload when game is complete. */
 
 // })
 const cardArray =[
-    {name:'Chewie', imgSrc:'matching_game/Chewie.jpeg'},
-    {name:'Chewie', imgSrc:'matching_game/Chewie.jpeg'},
-    {name: 'Vader', imgSrc: 'matching_game/Darth-Vader.jpeg'},
-    {name: 'Vader', imgSrc: 'matching_game/Darth-Vader.jpeg'},
-    {name: 'Grogu', imgSrc: 'matching_game/Grogu.jpeg'},
-    {name: 'Grogu', imgSrc: 'matching_game/Grogu.jpeg'},
-    {name: 'Mace', imgSrc: 'matching_game/Mace_windu.jpeg'},
-    {name: 'Mace', imgSrc: 'matching_game/Mace_windu.jpeg'},
-    {name: 'Ren', imgSrc: 'matching_game/Ren.jpeg'},
-    {name: 'Ren', imgSrc: 'matching_game/Ren.jpeg'},
-    {name: 'skywalker', imgSrc: 'matching_game/rise_skywalker.jpeg'},
-    {name: 'skywalker', imgSrc: 'matching_game/rise_skywalker.jpeg'},
-    {name: 'sidious', imgSrc: 'matching_game/Sidious.jpeg'},
-    {name: 'sidious', imgSrc: 'matching_game/Sidious.jpeg'},
-    {name: 'troopers', imgSrc: 'matching_game/vader_troops.jpeg'},
-    {name: 'trooper', imgSrc: 'matching_game/vader_troops.jpeg'}
+    {name:'Chewie', backSide: "matching_game/Star_wars_backside.jpeg", imgSrc:'matching_game/Chewie.jpeg'},
+    {name:'Chewie', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc:'matching_game/Chewie.jpeg'},
+    {name: 'Vader', backSide: "matching_game/Star_wars_backside.jpeg", imgSrc: 'matching_game/Darth-Vader.jpeg'},
+    {name: 'Vader', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/Darth-Vader.jpeg'},
+    {name: 'Grogu', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/Grogu.jpeg'},
+    {name: 'Grogu', backSide: "matching_game/Star_wars_backside.jpeg", imgSrc: 'matching_game/Grogu.jpeg'},
+    {name: 'Mace', backSide: "matching_game/Star_wars_backside.jpeg", imgSrc: 'matching_game/Mace_windu.jpeg'},
+    {name: 'Mace', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/Mace_windu.jpeg'},
+    {name: 'Ren', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/Ren.jpeg'},
+    {name: 'Ren', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/Ren.jpeg'},
+    {name: 'skywalker', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/rise_skywalker.jpeg'},
+    {name: 'skywalker', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/rise_skywalker.jpeg'},
+    {name: 'sidious', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/Sidious.jpeg'},
+    {name: 'sidious', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/Sidious.jpeg'},
+    {name: 'troopers', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/vader_troops.jpeg'},
+    {name: 'trooper', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/vader_troops.jpeg'}
     
     ]
 //document.querySelector allows me to grab the html element and manipulate it outside of css
 //I will need this to add the images to my board.
 
-const board = document.querySelector('.board')
-for(let i = 0; i < cardArray.length; i++){
-    let newDiv = document.createElement('div')
-    let image = document.createElement('img')
-    image.src = cardArray[i].imgSrc
-    newDiv.innerHTML = cardArray[i].name
-    board.appendChild(newDiv)
-    newDiv.appendChild(image)
 
-}
+ const gameStart = () =>{ //this is the function created to start the game
+
+    const board = document.querySelector('.board')//calling on the element (board) from our html
+
+    // created a for loop to run the lengthe of the card array
+    for(let i = 0; i < cardArray.length; i++){
+        let newDiv = document.createElement('div')// created the divs by using document.createElement
+        let image = document.createElement('img')
+        image.src = cardArray[i].backSide
+        newDiv.innerHTML = cardArray[i].name
+        board.appendChild(newDiv)
+        newDiv.appendChild(image)
+        newDiv.addEventListener("click", () => {
+            console.log("click")
+            newDiv.style.backgroundImage = `url(${cardArray[i].imgSrc})`
+            image.src = false
+        })
+    
+    }
+ 
+
+ }
+ gameStart()
 
 
 
