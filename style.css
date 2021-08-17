@@ -2,9 +2,9 @@
     width: 600px;
     height: 600px;
     border: darkblue 1px solid;
-    display: flex;
-    flex-wrap: wrap;
-    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
   
 }
 
