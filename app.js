@@ -46,9 +46,8 @@ const cardArray =[
     {name: 'trooper', backSide: "matching_game/Star_wars_backside.jpeg",imgSrc: 'matching_game/vader_troops.jpeg'}
     
     ]
-//document.querySelector allows me to grab the html element and manipulate it outside of css
-//I will need this to add the images to my board.
 
+    cardArray.sort(()=> .5 - Math.random())//this will randomize the game selection before start of game and on restart
 
  const gameStart = () =>{ //this is the function created to start the game
 
@@ -59,7 +58,7 @@ const cardArray =[
         let newDiv = document.createElement('div')// created the divs by using document.createElement
         let image = document.createElement('img')
         image.src = cardArray[i].backSide
-        newDiv.innerHTML = cardArray[i].name
+        // newDiv.innerHTML = cardArray[i].name
         board.appendChild(newDiv)
         newDiv.appendChild(image)
         newDiv.addEventListener("click", () => {
@@ -72,6 +71,11 @@ const cardArray =[
  
 
  }
+const match = () =>{
+    console.log(match)
+}
+ // need to check for matches using if statements
+ //
  gameStart()
 
 
