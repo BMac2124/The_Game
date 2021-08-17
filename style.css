@@ -1,4 +1,19 @@
-.board{
+.grid{
     height: 300px;
     width: 400px;
+    color: rgb(132, 0, 255);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
+
+.timeKeeper{
+    text-align: center;
+    text-size-adjust: 50;
+}
+
+.score{
+    text-align: center;
+    font-size: larger;
 }
