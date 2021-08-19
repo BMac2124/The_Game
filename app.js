@@ -47,13 +47,19 @@ const cardArray = [
 
 ]
 
-const chosenCards = [];
+// const chosenCards = [];
 const cardsFound = [];
+let pickOne = "";
+let pickTwo = "";
+let counter = 0;
+let round = false;
+let currentTwo = []
+let compareTwo = []
 
 cardArray.sort(() => .5 - Math.random())//this will randomize the game selection before start of game and on restart
 
 const gameStart = () => { //this is the function created to start the game
-
+    round = true;
     const board = document.querySelector('.board')//calling on the element (board) from our html
 
     // created a for loop to run the lengthe of the card array
@@ -66,9 +72,20 @@ const gameStart = () => { //this is the function created to start the game
         newDiv.appendChild(image)//images added to the divs (matched by name)
         newDiv.addEventListener("click", () => {  // the EventListner function logs the click and iniates the card to show
             console.log("click")
+            //if statement needs to be added to determine flip state!
+
+            // if (image.src == '') {
+            image.src = cardArray[i].imgSrc
+            // image.src = "";
+
+            selectedCard(cardArray[i], newDiv, image)
+
+            // match(pickOne, pickTwo)
+            // }
             // the following gets rid of the back image covering the hidden card face
-            newDiv.style.backgroundImage = `url(${cardArray[i].imgSrc})`
-            image.src = "";
+
+
+            //if two of the same cards are already in the choosen card array--selected card wont be called
         })
 
     }
@@ -77,19 +94,66 @@ const gameStart = () => { //this is the function created to start the game
 }
 
 //flipCard function() if items  clicked on from the grid match push to the card match function
-const selectedCard = () => {
-    let pickOne = cardArray[0].imgSrc
-    let pickTwo = cardArray[1].imgSrc
-    
-    
+const selectedCard = (card, newDiv, image) => {
+    console.log(card)
+    console.log(newDiv)
+    console.log(image)
+    compareTwo.push(card.name)
+    currentTwo.push(image)
+    console.log(compareTwo)
+    if (currentTwo.length == 2 && compareTwo[0] !== compareTwo[1]) {
+        setTimeout(() => {
+            // for (let card of document.querySelector(".board").children) {
+            //     card.style.backgroundImage = `url("matching_game/Star_wars_backside.jpeg")`
+            //     // image.src = "";
+
+            // }
+            for (let i = 0; i < currentTwo.length; i++) {
+                currentTwo[i].src = "matching_game/Star_wars_backside.jpeg"
+            }
+            currentTwo = []
+            compareTwo = []
+
+        }, 1000)
+
+        // round = false
+    }
+
+    if (compareTwo[0] === compareTwo[1]) {
+        for (let i = 0; i < currentTwo.length; i++) {
+            currentTwo[i].src = "matching_game/blue.jpg"
+        }
+        compareTwo= []
+    }
+
+
+
+
 }
 
-//  checking for match
-//function match() 
-  
-// need to check for matches using if statements
+// while (round) {
+//     if (counter == 2) {
+//         for (let card of document.querySelector(".board").children) {
+//             card.style.backgroundImage = `url("matching_game/Star_wars_backside.jpeg")`
+//             // image.src = "";
+
+//         }
+//         round = false
+//     } 
+// }
 
 gameStart()
+
+
+
+
+
+//  checking for match
+//function match() // 
+
+// need to check for matches using if statements
+
+
 
 
 
